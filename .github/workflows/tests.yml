@@ -1,0 +1,18 @@
+name: Run Python Tests
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Run Tests
+        run: |
+          python -m unittest repository_pattern.py
+          python -m unittest service_layer.py
+          python -m unittest unit_of_work.py
